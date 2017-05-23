@@ -76,7 +76,7 @@ public class Constants {
 	 * 5.8添加
 	 */
 	public static final int MSG_BLOCKING_QUEUE_LENGTH = 100;
-	public static final int ONCE_WRITE_DOZEN = 700;		//TODO 一个生产者一次写入的消息条数 500-1000
+	public static final int ONCE_WRITE_DOZEN = 500;		//TODO 一个生产者一次写入的消息条数 500-1000
 	
 	/**
 	 * 5.9添加

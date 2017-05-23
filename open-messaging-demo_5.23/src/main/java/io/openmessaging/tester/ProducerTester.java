@@ -24,7 +24,7 @@ public class ProducerTester {
         int sendNum = 0;
         Map<String, Integer> offsets = new HashMap<>();
         public ProducerTask(String label) {
-            this.label = label;
+            this.label = label+"_11i2hndasdnwqoijdcnacaseswgvscd";
             init();
         }
 
@@ -59,7 +59,7 @@ public class ProducerTester {
                     } else {
                         queueOrTopic = "TOPIC_" + random.nextInt(100);
                     }
-                    Message message = producer.createBytesMessageToQueue(queueOrTopic, (label +"asudhaiuhdp928ydahuihidb2ube2beljwhefb32grfbbfwbcfilu2o3e237"+ "_" + offsets.get(queueOrTopic)).getBytes());
+                    Message message = producer.createBytesMessageToQueue(queueOrTopic, (label + "_" + offsets.get(queueOrTopic)).getBytes());
                     logger.debug("queueOrTopic:{} offset:{}", queueOrTopic, label + "_" + offsets.get(queueOrTopic));
                     offsets.put(queueOrTopic, offsets.get(queueOrTopic) + 1);
                     producer.send(message);

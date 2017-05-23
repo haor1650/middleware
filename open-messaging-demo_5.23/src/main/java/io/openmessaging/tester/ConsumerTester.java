@@ -65,13 +65,14 @@ public class ConsumerTester {
 
         @Override
         public void run() {
+            String queueOrTopic = null;
+            String producer = null;
             while (true) {
                 try {
                     BytesMessage message = (BytesMessage) consumer.poll();
                     if (message == null) {
                         break;
                     }
-                    String queueOrTopic;
                     if (message.headers().getString(MessageHeader.QUEUE) != null) {
                         queueOrTopic = message.headers().getString(MessageHeader.QUEUE);
                     } else {
@@ -82,7 +83,7 @@ public class ConsumerTester {
                     }
                     String body = new String(message.getBody());
                     int index = body.lastIndexOf("_");
-                    String producer = body.substring(0, index);
+                    producer = body.substring(0, body.indexOf("_",9));
                     int offset = Integer.parseInt(body.substring(index + 1));
                     if (offset != offsets.get(queueOrTopic).get(producer)) {
                         logger.error("Offset not equal expected:{} actual:{} producer:{} queueOrTopic:{}",
@@ -94,6 +95,7 @@ public class ConsumerTester {
                     pullNum++;
                 } catch (Exception e) {
                     logger.error("Error occurred in the consuming process", e);
+                    System.out.println("queueOrTopic: "+queueOrTopic+", "+offsets.get(queueOrTopic) + ", producer "+producer);
                     break;
                 }
             }

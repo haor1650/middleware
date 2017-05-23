@@ -79,6 +79,7 @@ public class DefaultProducer implements Producer {
     private static AtomicInteger count = new AtomicInteger();
     
     @Override public void send(Message message) {
+//    	System.out.println(message);
         if (message == null) throw new ClientOMSException("Message should not be null");
         String topic = message.headers().getString(MessageHeader.TOPIC);
         String queue = message.headers().getString(MessageHeader.QUEUE);
