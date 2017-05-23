@@ -1,0 +1,3 @@
+Premain-class: io.openmessaging.tester.SizeOfObject  
+Can-Redefine-Classes: false  
+Boot-Class-Path:
